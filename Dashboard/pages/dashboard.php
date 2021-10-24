@@ -13,7 +13,15 @@
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
-<?php include("conexao.php"); ?>
+<?php
+
+if (isset($_SESSION["usuario"]) && is_array($_SESSION["usuario"])) {
+  require("conexao.php");
+  $adm = $_SESSION["usuario"][1];
+  $nome = $_SESSION["usuario"][0];
+} else {
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -56,7 +64,7 @@
             <li class="nav-item d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">(NOME DO USUARIO)</span>
+                <span class="d-sm-inline d-none"><?php echo $nome; ?></span>
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
