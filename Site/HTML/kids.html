@@ -28,7 +28,6 @@
 </head>
 <body>
 <div id="main-wrapper">
-
 <!-- Page Preloader -->
 <div id="preloader">
     <div id="status">
@@ -82,8 +81,8 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">O que é?</a></li>
                 <li><a href="services.html">Pilares</a></li>
-                <li class="active"><a href="contact.html">Contato</a></li>
-                <li><a href="kids.html">Kids</a></li>
+                <li><a href="contact.html">Contato</a></li>
+                <li class="active"><a href="kids.html">Kids</a></li>
                 <li class="dropdown m-menu-fw"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Recursos
                     <span><i class="fa fa-angle-down"></i></span></a>
                     <ul class="dropdown-menu">
@@ -125,6 +124,7 @@
                         </li>
                     </ul>
                 </li>
+                
             </ul>
 
         </div>
@@ -134,59 +134,157 @@
 </nav>
 <!-- .nav -->
 
+<div id="x-corp-carousel" class="carousel slide hero-slide hidden-xs" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#x-corp-carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#x-corp-carousel" data-slide-to="1"></li>
+        <li data-target="#x-corp-carousel" data-slide-to="2"></li>
+    </ol>
 
-<section class="single-page-title">
-    <div class="container text-center">
-        <h2>Entre em contato</h2>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="img/educacao-financeira-infantil-2.jpg" alt="Hero Slide">
+
+            <div class="carousel-caption">
+                <h1>A educação financeira a um clique de você</h1>
+
+                <p>Acesso a um super conteúdo escrito por especialistas, dicas sobre os melhores investimentos e muito mais.</p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="img/hero-slide-2.jpg" alt="...">
+
+            <div class="carousel-caption">
+                <h1>Atendimento rápido e especializado </h1>
+
+                <p>Seu problema será resolvido por um de nossos especialistas em até 24 horas após sua mensagem.</p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="img/hero-slide-3.jpg" alt="...">
+
+            <div class="carousel-caption">
+                <h1>Seus gastos de um jeito que você nunca viu</h1>
+
+                <p>Seus gastos são mostrados em gráficos separados em categorias.</p>
+            </div>
+        </div>
     </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#x-corp-carousel" role="button" data-slide="prev">
+        <i class="fa fa-angle-left" aria-hidden="true"></i>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#x-corp-carousel" role="button" data-slide="next">
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<!-- #x-corp-carousel-->
+
+<section class="x-services ptb-100 gray-bg">
+
+    <section class="section-title">
+        <div class="container text-center">
+            <h2>Vídeo explicativo</h2>
+            <iframe width="560" height="315" style="align-items: center;" src="https://www.youtube.com/embed/QF_bL2_yamA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </section>
+            
+        <!-- row -->
+    <!-- .container -->
 </section>
-<!-- .page-title -->
+<!-- .x-services -->
 
-<section class="contact-form ptb-100">
-    <div class="container text-center">
-        <h2>Mande sua mensagem e nossa equipe de especialistas te ajudará dentro de 24 horas.</h2>
-
+<section class="x-features">
+    <section class="section-title">
+        <div class="container text-center">
+            <h2>Como ensinar educação financeira para os seus filhos</h2>
+            <span class="bordered-icon"><i class="fa fa-circle-thin"></i></span>
+        </div>
+    </section>
+    <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <form>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group user-name">
-                                <label for="nameFive-first" class="sr-only">Name</label>
-                                <input type="text" class="form-control" required="" id="nameFive-first" placeholder="Nome">
-                            </div>
+            <div class="col-md-12 img-left">
+                <div class="promo-block-wrapper clearfix">
+                    <div class="promo-content">
+                        <h3>1. Dê um cofrinho</h3>
 
-                            <div class="form-group user-email">
-                                <label for="emailFive" class="sr-only">Email</label>
-                                <input type="email" class="form-control" required="" id="emailFive" placeholder="Email">
-                            </div>
+                        <p>Dê um cofrinho para que a criança tenha onde guardar dinheiro. Essa é uma dica que vale também para crianças bem pequenas, 
+                            quando elas gostam de juntar moedas sem se dar conta do valor de cada uma. </p>
+                    </div>
+                </div>
+                <!-- /.promo-block-wrapper -->
 
+                <div class="promo-block-wrapper clearfix">
+                    <div class="promo-content">
+                        <h3>2. Faça pagamento e ensine gestão do dinheiro</h3>
 
-                            <div class="form-group user-phone">
-                                <label for="websiteOne" class="sr-only">Website</label>
-                                <input type="text" class="form-control" required="" id="websiteOne" placeholder="Número telefônico">
-                            </div>
-                        </div><!-- /.col-md-6 -->
-                        <div class="col-md-6">
-                            <div class="form-group user-message">
-                                <label for="messageOne" class="sr-only">Message</label>
-                                <textarea class="form-control" required="" id="messageOne" placeholder="Escreva sua mensagem"></textarea>
-                            </div>
-                        </div><!-- /.col-md-6 -->
-                    </div><!-- /.row-->
-                    <button type="submit" class="btn btn-primary">Enviar mensagem</button>
-                </form>
-            </div><!-- /.col-md-8 -->
+                        <p>Mesada, semanada ou quinzenada, o nome e a frequência variam de acordo com a idade da criança. O recomendado é que crianças mais novas não recebam todo o 
+                            dinheiro de uma vez, pois são mais impulsivas e não têm noção de tempo.</p>
+                    </div>
+                </div>
+                <!-- /.promo-block-wrapper -->
+
+                <div class="promo-block-wrapper clearfix">
+                    <div class="promo-content last-type">
+                        <h3>3. Estabeleça metas de curto e médio prazo</h3>
+
+                        <p>O dinheiro já está na mão e tem lugar para ficar guardado, agora é preciso decidir o que será feito com ele. Ensine a criança a necessidade 
+                            de poupar uma quantia de todo pagamento que ela receber para atingir algum objetivo importante.</p>
+                    </div>
+                </div>
+
+                
+                <!-- /.promo-block-wrapper -->
+
+            </div>
         </div>
 
+        <div class="row">
+            <div class="col-md-12 img-right">
+                <div class="promo-block-wrapper clearfix">
+                    <div class="promo-content">
+                        <h3>4. Ensine a doar</h3>
+
+                        <p>A doação, neste caso, funciona como um aprendizado para não acumular objetos, roupas e brinquedos, que podem ter um uso melhor do que ficar no 
+                            fundo do armário. Esse hábito evita que a criança se torne um adulto egoísta e consumista, que junta sem necessidade e não sabe dividir. </p>
+                    </div>
+                </div>
+                <!-- /.promo-block-wrapper -->
+
+                <div class="promo-block-wrapper clearfix">
+                    <div class="promo-content">
+                        <h3>5. Evite desperdício</h3>
+
+                        <p>Mostre que desperdiçar é perder dinheiro, além de ser uma prática com alto custo ambiental e mesmo social. Por isso, ensine a criança a dizer 
+                            “não” ao desperdício de energia, água e comida. A criança deve aprender a cuidar e a zelar de tudo o que tem, seja dinheiro ou não.</p>
+                    </div>
+                </div>
+                <!-- /.promo-block-wrapper -->
+
+                <div class="promo-block-wrapper clearfix">
+                    <div class="promo-content last-type">
+                        <h3>6. Fale sobre dinheiros e investimentos</h3>
+
+                        <p>Quando a criança for mais velha e já tiver maturidade para entender um pouco sobre dinheiro e investimento, converse sobre isso com ela. Afinal, 
+                            é importante ela ter algum exemplo em casa ou na família e alguém com quem ela se sinta segura para tirar dúvidas. Comece explicando os tipos de 
+                            investimentos mais simples, como poupança ou mesmo aplicação em imóveis. O importante é que ela tenha interesse em cuidar do próprio dinheiro.</p>
+                    </div>
+                </div>
+
+                
+                <!-- /.promo-block-wrapper -->
+
+            </div>
+        </div>
     </div>
 </section>
-<!-- .contact-form-->
+<!-- .x-features -->
 
-<section class="map-section">
-    <div id="googleMap"></div>
-</section>
-    <!--.map-section-->
 
 <footer class="footer">
 
@@ -233,12 +331,10 @@
                             <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
                         </ul>
                     </div>
-                </div>
-                <!-- /.col-sm-4 -->
+                </div><!-- /.col-sm-4 -->
             </div>
         </div>
-    </div>
-    <!-- /.Footer Widget Section -->
+    </div><!-- /.Footer Widget Section -->
 
     <div class="copyright-section">
         <div class="container clearfix">
@@ -250,10 +346,8 @@
                 <li><a href="services.html">Pilares</a></li>
                 <li><a href="contact.html">Contatos</a></li>
             </ul>
-        </div>
-        <!-- .container -->
-    </div>
-    <!-- .copyright-section -->
+        </div><!-- .container -->
+    </div><!-- .copyright-section -->
 </footer>
 <!-- .footer -->
 
@@ -269,19 +363,17 @@
         <div>
             <ul id="menu">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html">O que é?</a></li>
+                <li><a href="services.html">Pilares</a></li>
+                <li><a href="contact.html">Contatos</a></li>
             </ul>
         </div>
     </div>
 </div>
 <!-- .uc-mobile-menu -->
 
-
 </div>
 <!-- #main-wrapper -->
-
 
 
 <!-- Script -->
@@ -292,7 +384,9 @@
 <script src="js/smoothscroll.js"></script>
 <script src="js/mobile-menu.js"></script>
 <script src="js/flexSlider/jquery.flexslider-min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js"></script>
 <script src="js/scripts.js"></script>
+<div/>
+		<a style="font-size:0; height:0; width:0; opacity:0; position:absolute" target="_blank" href="http://www.uicookies.com">HTML Templates by uiCookies</a>        
+	</div>
 </body>
 </html>
