@@ -129,7 +129,9 @@ if (isset($_SESSION["usuario"]) && is_array($_SESSION["usuario"])) {
       </div>
     
       <div class="row mt-4">
-      <div id="piechart" style="width: 900px; height: 500px;"></div>
+        <!-- Adicionando Grafico -->
+        <div id="donutchart" style="width: 900px; height: 500px;"></div>
+
       </div>
       <footer class="footer pt-3  ">
         <div class="container-fluid">
@@ -237,40 +239,66 @@ if (isset($_SESSION["usuario"]) && is_array($_SESSION["usuario"])) {
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/chartjs.min.js"></script>
+  <html>
+  <head>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
+      google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
-
       function drawChart() {
-        <?php
-              require('conexao.php');
-
-              $query = "SELECT * FROM gastos";
-              $busca = mysqli_query($conexao, $query);
-
-              while ($dados = mysqli_fetch_array($busca)) {
-                $id = $dados['id'];
-
-              ?>
-
         var data = google.visualization.arrayToDataTable([
-          ['Tipo', 'Valor'],
-          ['Alimenticio',     700],
-          ['Compras na Internet',      100],
-          ['Contas(Água, Luz e Telefone)',  89.90]
-        ]);
-        <?php } ?>
+              ['Task', 'Hours per Day'],
+              ['Conta (Água, luz e Internet).', <?php
+                            require('conexao.php');
+                            $query = "SELECT * FROM gastos SUM(valor) WHERE tipo = 1" ;
+                            $busca = mysqli_query($conexao, $query);
+                            
+                            echo valor;
+                            ?>],
+              ['Alimenticio.', <?php
+                            require('conexao.php');
+                            $query = "SELECT * FROM gastos WHERE tipo = 2" ;
+                            $busca = mysqli_query($conexao, $query);
+                            $cont = 0;
+                            while ($dados = mysqli_fetch_array($busca)) {
+                              $cont++;
+                            }
+                            echo $cont;
+                            ?>],
+              ['Compra na Internet.', <?php
+                            require('conexao.php');
+                            $query = "SELECT * FROM gastos WHERE tipo = 3" ;
+                            $busca = mysqli_query($conexao, $query);
+                            $cont = 0;
+                            while ($dados = mysqli_fetch_array($busca)) {
+                              $cont++;
+                            }
+                            echo $cont;
+                            ?>],
+              ['Farmácia.', <?php
+                            require('conexao.php');
+                            $query = "SELECT * FROM gastos WHERE tipo = 4" ;
+                            $busca = mysqli_query($conexao, $query);
+                            $cont = 0;
+                            while ($dados = mysqli_fetch_array($busca)) {
+                              $cont++;
+                            }
+                            echo $cont;
+                            ?>],
+            ]);
 
         var options = {
-          title: 'My Daily Activities'
+          title: 'Controle de Gatos',
+          pieHole: 0.4,
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
         chart.draw(data, options);
       }
     </script>
+
+
 
   <script>
     var win = navigator.platform.indexOf('Win') > -1;

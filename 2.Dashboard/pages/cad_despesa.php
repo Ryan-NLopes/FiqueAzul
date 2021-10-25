@@ -61,9 +61,10 @@
                 <div class="mb-3">
                 <label>Tipo</label>
                   <select  name="tipo" class="form-control">
-                    <option>Conta (Água, luz e Internet)</option>
-                    <option>Alimenticio</option>
-                    <option>Compra na Internet</option>
+                    <option value=1>Conta (Água, luz e Internet).</option>
+                    <option value=2>Alimenticio.</option>
+                    <option value=3>Compra na Internet.</option>
+                    <option value=4>Farmácia.</option>
                   </select>
                 </div>
                 <div class="mb-3">

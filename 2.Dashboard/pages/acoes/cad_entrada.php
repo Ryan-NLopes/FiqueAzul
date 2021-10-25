@@ -11,5 +11,5 @@ $descricao = $_POST['descricao'];
 	VALUES (default,  '$descricao','$valor')";
 	$busca = mysqli_query($conexao, $query);
 
-	$_SESSION['msg_cad'] = "<p style='color:green; font-weight: bold;'>USUÁRIO CADASTRADO COM SUCESSO!</p>";
+	$_SESSION['msg_cad'] = "<p style='color:green; font-weight: bold;'>ENTRADA CADASTRADO COM SUCESSO!</p>";
 	header("Location: ../gastos.php");
