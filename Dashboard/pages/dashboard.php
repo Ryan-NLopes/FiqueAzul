@@ -16,8 +16,7 @@
 <?php
 
 if (isset($_SESSION["usuario"]) && is_array($_SESSION["usuario"])) {
-  require("conexao.php");
-  $adm = $_SESSION["usuario"][1];
+  require("acoes/conexao2.php");
   $nome = $_SESSION["usuario"][0];
 } else {
 }
@@ -64,7 +63,7 @@ if (isset($_SESSION["usuario"]) && is_array($_SESSION["usuario"])) {
             <li class="nav-item d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none"><?php echo $nome; ?></span>
+                <a class="d-sm-inline d-none" href="index.php">Sair</a>
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">

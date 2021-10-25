@@ -13,17 +13,17 @@ if (isset($_POST["email"]) && isset($_POST["senha"]) && $conexao != null) {
         // $_SESSION['limite'] = $tempolimite;
 
         session_start();
-        $_SESSION["usuario"] = array($user["nome"], $user["adm"]);
+        $_SESSION["usuario"] = array($user["nome"]);
         echo "<script>window.location = '../dashboard.php'</script>";
     } else {
         $_SESSION['msg'] = "<div class='alert alert-danger'>Login ou senha incorreto!</div>";
         echo "<script> alert('E-mail e/ou senha incorreto(s).') </script>
                 <meta http-equiv='refresh'>";
-        echo "<script>window.location = '../login.php'</script>";
+        echo "<script>window.location = '../index.php'</script>";
     }
 } else {
     $_SESSION['msg'] = "<div class='alert alert-danger'>Login ou senha incorreto!</div>";
     echo "<script> alert('E-mail e/ou senha incorreto(s).') </script>
                 <meta http-equiv='refresh'>";
-    echo "<script>window.location = '../login.php'</script>";
+    echo "<script>window.location = '../index.php'</script>";
 }
