@@ -67,7 +67,7 @@
                     </div>
                     <label>Senha</label>
                     <div class="mb-3">
-                      <input name="senha" class="form-control" id="password" placeholder="Senha" aria-label="Password" aria-describedby="password-addon">
+                      <input type="password"name="senha" class="form-control" id="password" placeholder="Senha" aria-label="Password" aria-describedby="password-addon">
                     </div>
                     <div class="text-center">
                       <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Login</button>
@@ -90,7 +90,7 @@
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                   <p class="mb-4 text-sm mx-auto">
                     Ainda não tem uma conta?
-                    <a href="javascript:;" class="text-info text-gradient font-weight-bold">Criar uma conta</a>
+                    <a href="cad_usuario.php" class="text-info text-gradient font-weight-bold">Criar uma conta</a>
                   </p>
                 </div>
               </div>
