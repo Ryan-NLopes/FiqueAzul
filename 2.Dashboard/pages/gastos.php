@@ -125,6 +125,7 @@
                   </div>
                 </div>
               </div>
+              <div class="card-body pt-4 p-3">
               <?php
               require('conexao.php');
 
@@ -135,7 +136,6 @@
                 $id = $dados['id'];
 
               ?>
-              <div class="card-body pt-4 p-3">
                 <ul class="list-group">
                   <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                     <div class="d-flex align-items-center">
@@ -153,6 +153,7 @@
               </div>
             </div>
           </div>
+          
           <div class="col-md-6 mt-4">
             <div class="card h-100 mb-4">
               <div class="card-header pb-0 px-3">
@@ -165,7 +166,9 @@
                   </div>
                 </div>
               </div>
-              <?php
+              
+              <div class="card-body pt-4 p-3">
+                <?php
               require('conexao.php');
 
               $query = "SELECT * FROM gastos";
@@ -175,7 +178,6 @@
                 $id = $dados['id'];
 
               ?>
-              <div class="card-body pt-4 p-3">
                 <ul class="list-group">
                   <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                     <div class="d-flex align-items-center">
@@ -194,7 +196,9 @@
             </div>
           </div>
         </div>
-        <footer class="footer pt-3  ">
+        
+      </div>
+  </main><footer class="footer pt-3  ">
           <div class="container-fluid">
             <div class="row align-items-center justify-content-lg-between">
               <div class="col-lg-6 mb-lg-0 mb-4">
@@ -226,8 +230,6 @@
             </div>
           </div>
         </footer>
-      </div>
-  </main>
   <div class="fixed-plugin">
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
       <i class="fa fa-cog py-2"> </i>
