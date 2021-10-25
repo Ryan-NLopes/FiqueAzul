@@ -256,11 +256,9 @@ if (isset($_SESSION["usuario"]) && is_array($_SESSION["usuario"])) {
 
         var data = google.visualization.arrayToDataTable([
           ['Tipo', 'Valor'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
+          ['Alimenticio',     700],
+          ['Compras na Internet',      100],
+          ['Contas(Água, Luz e Telefone)',  89.90]
         ]);
         <?php } ?>
 
