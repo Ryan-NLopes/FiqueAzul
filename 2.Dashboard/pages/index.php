@@ -20,7 +20,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="icon" type="image/png" href="../assets/img/logo.png">
   <title>
     Login - FNA
   </title>
@@ -56,6 +56,7 @@
                     unset($_SESSION['msgcad']);
                   }
                   ?>
+                  <img src="../assets/img/logo.png" style="height: 100px; width: 100px; text-align:center">
                   <h3 class="font-weight-bolder text-info text-gradient">Seja Bem-Vindo</h3>
                   <p class="mb-0">Digite seu e-mail e senha para entrar.</p>
                 </div>
