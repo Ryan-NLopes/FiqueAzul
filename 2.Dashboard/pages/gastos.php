@@ -99,7 +99,7 @@
                     <div class="card-body pt-0 p-3 text-center">
                       <h6 class="text-center mb-0">Total Entrada</h6>
                       <hr class="horizontal dark my-3">
-                      <h5 class="mb-0">R$<?php echo $entrada['VALOR'];?>,00</h5>
+                      <h5 class="mb-0">R$<?php echo number_format((float)$entrada['VALOR'], 2, ',', ''); ?></h5>
                     </div>
                   </div>
                 </div>
@@ -119,7 +119,7 @@
                     <div class="card-body pt-0 p-3 text-center">
                       <h6 class="text-center mb-0">Total Despesas</h6>
                       <hr class="horizontal dark my-3">
-                      <h5 class="mb-0">R$<?php echo $gastos['VALOR'];?>,00</h5>
+                      <h5 class="mb-0">R$<?php echo number_format((float)$gastos['VALOR'], 2, ',', ''); ?></h5>
                     </div>
                   </div>
                 </div>
@@ -160,7 +160,7 @@
                       </div>
                     </div>
                     <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
-                    +R$<?php echo $dados['valor']; ?>
+                    +R$<?php echo number_format((float)$dados['valor'], 2, ',', ''); ?>
                     </div>
                   </li>
                 </ul>
@@ -202,7 +202,7 @@
                       </div>
                     </div>
                     <div class="d-flex align-items-center text-danger text-gradient text-sm font-weight-bold">
-                    -R$<?php echo $dados['valor']; ?>
+                    -R$<?php echo number_format((float)$dados['valor'], 2, ',', ''); ?>
                     </div>
                   </li>
                 </ul>

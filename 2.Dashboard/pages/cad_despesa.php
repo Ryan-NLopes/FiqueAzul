@@ -73,7 +73,7 @@
                 </div>
                 <div class="mb-3">
                   <label>Valor R$</label>
-                  <input type="number" name="valor" class="form-control" placeholder="R$" aria-label="Password" aria-describedby="password-addon">
+                  <input type="text" name="valor" class="form-control" placeholder="R$" aria-label="Password" aria-describedby="password-addon">
                 </div>
 
                 <div class="text-center">

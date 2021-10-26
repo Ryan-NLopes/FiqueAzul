@@ -98,7 +98,7 @@ if (isset($_SESSION["usuario"]) && is_array($_SESSION["usuario"])) {
                         $entrada = mysqli_fetch_assoc($resultado);
                         ?>
                     <p class="text-sm mb-0 text-capitalize font-weight-bold"><a href="billing.html">Receita</a></p>
-                    <h5 class="text-success font-weight-bolder mb-0">R$<?php echo $entrada['VALOR'];?></h5>
+                    <h5 class="text-success font-weight-bolder mb-0">R$<?php echo number_format((float)$entrada['VALOR'], 2, ',', ''); ?></h5>
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -123,7 +123,7 @@ if (isset($_SESSION["usuario"]) && is_array($_SESSION["usuario"])) {
                         ?>
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold"><a href="billing.html">Gastos</a></p>
-                    <h5 class=" text-danger font-weight-bolder mb-0">- R$<?php echo $gastos['VALOR'];?>,00</h5>
+                    <h5 class=" text-danger font-weight-bolder mb-0">- R$<?php echo number_format((float)$gastos['VALOR'], 2, ',', ''); ?></h5>
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -250,25 +250,25 @@ if (isset($_SESSION["usuario"]) && is_array($_SESSION["usuario"])) {
                         $soma = "SELECT SUM(valor) AS VALOR FROM gastos WHERE tipo=1";
                         $resultado = mysqli_query($conexao, $soma);
                         $gastos = mysqli_fetch_assoc($resultado);
-                        echo $gastos['VALOR'];?>],
+                        echo number_format((float)$gastos['VALOR'], 2, '.', ''); ?>],
           ['Alimenticio.', <?php
                         require('conexao.php');
                         $soma = "SELECT SUM(valor) AS VALOR FROM gastos WHERE tipo=2";
                         $resultado = mysqli_query($conexao, $soma);
                         $gastos = mysqli_fetch_assoc($resultado);
-                        echo $gastos['VALOR'];?>],
+                        echo number_format((float)$gastos['VALOR'], 2, '.', '');?>],
           ['Compra na Internet.',<?php
                         require('conexao.php');
                         $soma = "SELECT SUM(valor) AS VALOR FROM gastos WHERE tipo=3";
                         $resultado = mysqli_query($conexao, $soma);
                         $gastos = mysqli_fetch_assoc($resultado);
-                        echo $gastos['VALOR'];?>],
+                        echo number_format((float)$gastos['VALOR'], 2, '.', '');?>],
           ['Farmácia.', <?php
                         require('conexao.php');
                         $soma = "SELECT SUM(valor) AS VALOR FROM gastos WHERE tipo=4";
                         $resultado = mysqli_query($conexao, $soma);
                         $gastos = mysqli_fetch_assoc($resultado);
-                        echo $gastos['VALOR'];?>],
+                        echo number_format((float)$gastos['VALOR'], 2, '.', '');?>],
         ]);
 
         var options = {
