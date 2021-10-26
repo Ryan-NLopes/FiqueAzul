@@ -45,7 +45,7 @@ if (isset($_SESSION["usuario"]) && is_array($_SESSION["usuario"])) {
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
-  <?php include "navbar.php";?>
+  <?php include "navbar.php"; ?>
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
@@ -60,40 +60,44 @@ if (isset($_SESSION["usuario"]) && is_array($_SESSION["usuario"])) {
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
             <ul class="navbar-nav  justify-content-end">
-            <li class="nav-item d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
-                <i class="fa fa-user me-sm-1"></i>
-                <a class="d-sm-inline d-none" href="index.php">Sair</a>
-              </a>
-            </li>
-            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
-                <div class="sidenav-toggler-inner">
-                  <i class="sidenav-toggler-line"></i>
-                  <i class="sidenav-toggler-line"></i>
-                  <i class="sidenav-toggler-line"></i>
-                </div>
-              </a>
-            </li>
-          </ul>
+              <li class="nav-item d-flex align-items-center">
+                <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
+                  <i class="fa fa-user me-sm-1"></i>
+                  <a class="d-sm-inline d-none" href="index.php">Sair</a>
+                </a>
+              </li>
+              <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+                  <div class="sidenav-toggler-inner">
+                    <i class="sidenav-toggler-line"></i>
+                    <i class="sidenav-toggler-line"></i>
+                    <i class="sidenav-toggler-line"></i>
+                  </div>
+                </a>
+              </li>
+            </ul>
           </div>
-          
+
         </div>
       </div>
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
       <div class="row">
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
+                  <?php
+                        require('conexao.php');
+                        $soma = "SELECT SUM(valor) AS VALOR FROM entrada";
+                        $resultado = mysqli_query($conexao, $soma);
+                        $entrada = mysqli_fetch_assoc($resultado);
+                        ?>
                     <p class="text-sm mb-0 text-capitalize font-weight-bold"><a href="billing.html">Receita</a></p>
-                    <h5 class="text-success font-weight-bolder mb-0">
-                      R$3.560,00
-                    </h5>
+                    <h5 class="text-success font-weight-bolder mb-0">R$<?php echo $entrada['VALOR'];?></h5>
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -105,16 +109,20 @@ if (isset($_SESSION["usuario"]) && is_array($_SESSION["usuario"])) {
             </div>
           </div>
         </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
+                <?php
+                        require('conexao.php');
+                        $soma = "SELECT SUM(valor) AS VALOR FROM gastos";
+                        $resultado = mysqli_query($conexao, $soma);
+                        $gastos = mysqli_fetch_assoc($resultado);
+                        ?>
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold"><a href="billing.html">Gastos</a></p>
-                    <h5 class=" text-danger font-weight-bolder mb-0">
-                      R$2.300,00
-                    </h5>
+                    <h5 class=" text-danger font-weight-bolder mb-0">- R$<?php echo $gastos['VALOR'];?>,00</h5>
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -127,7 +135,7 @@ if (isset($_SESSION["usuario"]) && is_array($_SESSION["usuario"])) {
           </div>
         </div>
       </div>
-    
+
       <div class="row mt-4">
         <!-- Adicionando Grafico -->
         <div id="donutchart" style="width: 900px; height: 500px;"></div>
@@ -240,56 +248,44 @@ if (isset($_SESSION["usuario"]) && is_array($_SESSION["usuario"])) {
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/chartjs.min.js"></script>
   <html>
+
   <head>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
     <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart"]});
+      google.charts.load("current", {
+        packages: ["corechart"]
+      });
       google.charts.setOnLoadCallback(drawChart);
+
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-              ['Task', 'Hours per Day'],
-              ['Conta (Água, luz e Internet).', <?php
-                            require('conexao.php');
-                            $query = "SELECT * FROM gastos WHERE tipo = 1" ;
-                            $busca = mysqli_query($conexao, $query);
-                            $cont = 0;
-                            while ($dados = mysqli_fetch_array($busca)) {
-                              $cont++;
-                            }
-                            echo $cont;
-                            ?>],
-              ['Alimenticio.', <?php
-                            require('conexao.php');
-                            $query = "SELECT * FROM gastos WHERE tipo = 2" ;
-                            $busca = mysqli_query($conexao, $query);
-                            $cont = 0;
-                            while ($dados = mysqli_fetch_array($busca)) {
-                              $cont++;
-                            }
-                            echo $cont;
-                            ?>],
-              ['Compra na Internet.', <?php
-                            require('conexao.php');
-                            $query = "SELECT * FROM gastos WHERE tipo = 3" ;
-                            $busca = mysqli_query($conexao, $query);
-                            $cont = 0;
-                            while ($dados = mysqli_fetch_array($busca)) {
-                              $cont++;
-                            }
-                            echo $cont;
-                            ?>],
-              ['Farmácia.', <?php
-                            require('conexao.php');
-                            $query = "SELECT * FROM gastos WHERE tipo = 4" ;
-                            $busca = mysqli_query($conexao, $query);
-                            $cont = 0;
-                            while ($dados = mysqli_fetch_array($busca)) {
-                              $cont++;
-                            }
-                            echo $cont;
-                            ?>],
-            ]);
+          ['Task', 'Hours per Day'],
+          ['Conta (Água, luz e Internet).', <?php
+                        require('conexao.php');
+                        $soma = "SELECT SUM(valor) AS VALOR FROM gastos WHERE tipo=1";
+                        $resultado = mysqli_query($conexao, $soma);
+                        $gastos = mysqli_fetch_assoc($resultado);
+                        echo $gastos['VALOR'];?>],
+          ['Alimenticio.', <?php
+                        require('conexao.php');
+                        $soma = "SELECT SUM(valor) AS VALOR FROM gastos WHERE tipo=2";
+                        $resultado = mysqli_query($conexao, $soma);
+                        $gastos = mysqli_fetch_assoc($resultado);
+                        echo $gastos['VALOR'];?>],
+          ['Compra na Internet.',<?php
+                        require('conexao.php');
+                        $soma = "SELECT SUM(valor) AS VALOR FROM gastos WHERE tipo=3";
+                        $resultado = mysqli_query($conexao, $soma);
+                        $gastos = mysqli_fetch_assoc($resultado);
+                        echo $gastos['VALOR'];?>],
+          ['Farmácia.', <?php
+                        require('conexao.php');
+                        $soma = "SELECT SUM(valor) AS VALOR FROM gastos WHERE tipo=4";
+                        $resultado = mysqli_query($conexao, $soma);
+                        $gastos = mysqli_fetch_assoc($resultado);
+                        echo $gastos['VALOR'];?>],
+        ]);
 
         var options = {
           title: 'Controle de Gatos',
@@ -303,19 +299,19 @@ if (isset($_SESSION["usuario"]) && is_array($_SESSION["usuario"])) {
 
 
 
-  <script>
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar')) {
-      var options = {
-        damping: '0.5'
+    <script>
+      var win = navigator.platform.indexOf('Win') > -1;
+      if (win && document.querySelector('#sidenav-scrollbar')) {
+        var options = {
+          damping: '0.5'
+        }
+        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
       }
-      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-    }
-  </script>
-  <!-- Github buttons -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+    </script>
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
 </body>
 
 </html>

@@ -34,6 +34,9 @@
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -87,10 +90,16 @@
                         <i class="fas fa-landmark opacity-10"></i>
                       </div>
                     </div>
+                    <?php
+                        require('conexao.php');
+                        $soma = "SELECT SUM(valor) AS VALOR FROM entrada";
+                        $resultado = mysqli_query($conexao, $soma);
+                        $entrada = mysqli_fetch_assoc($resultado);
+                        ?>
                     <div class="card-body pt-0 p-3 text-center">
                       <h6 class="text-center mb-0">Total Entrada</h6>
                       <hr class="horizontal dark my-3">
-                      <h5 class="mb-0">+R$2000.00</h5>
+                      <h5 class="mb-0">R$<?php echo $entrada['VALOR'];?>,00</h5>
                     </div>
                   </div>
                 </div>
@@ -101,10 +110,16 @@
                         <i class="fab fa-paypal opacity-10"></i>
                       </div>
                     </div>
+                    <?php
+                        require('conexao.php');
+                        $soma = "SELECT SUM(valor) AS VALOR FROM gastos";
+                        $resultado = mysqli_query($conexao, $soma);
+                        $gastos = mysqli_fetch_assoc($resultado);
+                        ?>
                     <div class="card-body pt-0 p-3 text-center">
                       <h6 class="text-center mb-0">Total Despesas</h6>
                       <hr class="horizontal dark my-3">
-                      <h5 class="mb-0">-R$1500.00</h5>
+                      <h5 class="mb-0">R$<?php echo $gastos['VALOR'];?>,00</h5>
                     </div>
                   </div>
                 </div>
