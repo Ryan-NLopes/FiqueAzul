@@ -251,10 +251,13 @@ if (isset($_SESSION["usuario"]) && is_array($_SESSION["usuario"])) {
               ['Task', 'Hours per Day'],
               ['Conta (Água, luz e Internet).', <?php
                             require('conexao.php');
-                            $query = "SELECT * FROM gastos SUM(valor) WHERE tipo = 1" ;
+                            $query = "SELECT * FROM gastos WHERE tipo = 1" ;
                             $busca = mysqli_query($conexao, $query);
-                            
-                            echo valor;
+                            $cont = 0;
+                            while ($dados = mysqli_fetch_array($busca)) {
+                              $cont++;
+                            }
+                            echo $cont;
                             ?>],
               ['Alimenticio.', <?php
                             require('conexao.php');
