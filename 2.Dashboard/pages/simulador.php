@@ -51,40 +51,63 @@
     </div>
     <div class="container">
       <div class="row mt-lg-n10 mt-md-n11 mt-n10">
-        <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+        <div class="col-xl-5 col-lg-5 col-md-7 mx-auto">
           <div class="card z-index-0">
             <div class="card-header text-center pt-4">
               <h5>SIMULADOR</h5>
             </div>
             <div class="card-body">
-              <form>
-              <div class="mb-3">
-                <label>Tipo de Juros</label>
-                  <select name="tipo" class="form-control">
-                    <option value=1>Juros Simples</option>
-                    <option value=2>Juros Compostos</option>
-                  </select>
+              <form method="POST" action="">
+                <div class="mb-3">
+                  <label>Tipo de Juros</label>
+                    <select name="tipo" class="form-control">
+                      <option value=1>Juros Simples</option>
+                      <option value=2>Juros Compostos</option>
+                    </select>
                 </div>
                 <div class="mb-3">
-                <label>Qual o valor você quer investir? </label>
-                  <input type="text" name="valor" class="form-control"  placeholder="R$" aria-label="Email" aria-describedby="email-addon">
+                  <label>Qual o valor você quer investir? </label>
+                    <input type="number" name="valor" class="form-control"  placeholder="R$" aria-label="Email" aria-describedby="email-addon">
                 </div>
                 <div class="mb-3">
-                  <label>Se você for investir todo o mês (aporte mensal), qual o valor?</label>
-                  <input type="text" name="valorMensal" class="form-control" placeholder="R$" aria-label="Password" aria-describedby="password-addon">
+                  <label>Por quanto tempo você quer investir (meses)?</label>
+                  <input type="text" name="tempo" class="form-control" placeholder="Mês" aria-label="Password" aria-describedby="password-addon">
                 </div>
                 <div class="mb-3">
-                  <label>Juros a.m</label>
-                  <input type="text" name="valorMensal" class="form-control" placeholder="1% a.m" aria-label="Password" aria-describedby="password-addon">
+                  <label>Qual a taxa (%)?</label>
+                  <input type="number" name="porcentagemJuros" class="form-control" placeholder="1% a.m" aria-label="Password" aria-describedby="password-addon">
                 </div>
-
                 <div class="text-center">
                   <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Simular</button>
                 </div>
                 <div class="text-center">
-                  <a href="dashboard.php"><button class="btn bg-gradient-dark w-100 my-4 mb-2">Voltar</button></a>
+                  <a href="dashboard.php" class="btn bg-gradient-dark w-100 my-4 mb-2">Voltar</a>
                 </div>
               </form>
+
+                <?php
+                  if (isset($_POST['tipo']) == NULL || $_POST['valor'] == NULL || $_POST['tempo'] == NULL || $_POST['porcentagemJuros'] == NULL){
+                    echo "Campos precisam ser preenchidos.";
+                  }
+                  else{
+                    $tipo = $_POST['tipo'];
+                    $valor = $_POST['valor'];
+                    $tempo = $_POST['tempo'];
+                    $porcentagemJuros = $_POST['porcentagemJuros'];
+
+                    if($tipo == 1){
+                      $valorJuros = $valor * $tempo * ($porcentagemJuros / 100);
+                      $valorMontante = $valorJuros + $valor;
+                      echo "<p><h3>Juros de R$ " .$valorJuros.".</h3></p>";
+                      echo "<p><h3>Montante de R$ " .$valorMontante.".</h3></p>";   
+                    }
+                    else if($tipo == 2){
+                      $valorMontante = $valor * (1 + ($porcentagemJuros / 100)) * $tempo;
+                      echo "<p><h3>Montante de R$ " .$valorMontante.".</h3></p>";  
+                    }  
+                  }
+                ?>
+
             </div>
           </div>
         </div>
