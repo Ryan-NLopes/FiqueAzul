@@ -128,7 +128,7 @@
                   <div class="card">
                     <div class="card-header mx-4 p-3 text-center">
                       <div class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg">
-                      <i class="bi bi-graph-down-arrow"></i>
+                      <i class="bi bi-cash-coin"></i>
                       </div>
                     </div>
                     <?php

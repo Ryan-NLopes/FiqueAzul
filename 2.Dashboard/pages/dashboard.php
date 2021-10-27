@@ -85,19 +85,19 @@ if (isset($_SESSION["usuario"]) && is_array($_SESSION["usuario"])) {
     <!-- End Navbar -->
     <div class="container-fluid py-4">
       <div class="row">
-        <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
+        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                  <?php
-                        require('conexao.php');
-                        $soma = "SELECT SUM(valor) AS VALOR FROM entrada";
-                        $resultado = mysqli_query($conexao, $soma);
-                        $entrada = mysqli_fetch_assoc($resultado);
-                        ?>
-                    <p class="text-sm mb-0 text-capitalize font-weight-bold"><a href="billing.html">Receita</a></p>
+                    <?php
+                    require('conexao.php');
+                    $soma = "SELECT SUM(valor) AS VALOR FROM entrada";
+                    $resultado = mysqli_query($conexao, $soma);
+                    $entrada = mysqli_fetch_assoc($resultado);
+                    ?>
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold"><a href="gastos.php">Receita</a></p>
                     <h5 class="text-success font-weight-bolder mb-0">R$<?php echo number_format((float)$entrada['VALOR'], 2, ',', ''); ?></h5>
                   </div>
                 </div>
@@ -110,25 +110,58 @@ if (isset($_SESSION["usuario"]) && is_array($_SESSION["usuario"])) {
             </div>
           </div>
         </div>
-        <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
+        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
-                <?php
-                        require('conexao.php');
-                        $soma = "SELECT SUM(valor) AS VALOR FROM gastos";
-                        $resultado = mysqli_query($conexao, $soma);
-                        $gastos = mysqli_fetch_assoc($resultado);
-                        ?>
+                  <?php
+                  require('conexao.php');
+                  $soma = "SELECT SUM(valor) AS VALOR FROM gastos";
+                  $resultado = mysqli_query($conexao, $soma);
+                  $gastos = mysqli_fetch_assoc($resultado);
+                  ?>
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-capitalize font-weight-bold"><a href="billing.html">Gastos</a></p>
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold"><a href="gastos.php">Gastos</a></p>
                     <h5 class=" text-danger font-weight-bolder mb-0">- R$<?php echo number_format((float)$gastos['VALOR'], 2, ',', ''); ?></h5>
                   </div>
                 </div>
                 <div class="col-4 text-end">
                   <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                  <i class="bi bi-graph-down-arrow"></i>
+                    <i class="bi bi-graph-down-arrow"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <?php
+
+                  require('conexao.php');
+                  $soma = "SELECT SUM(valor) AS VALORSAIDA FROM gastos";
+                  $resultado = mysqli_query($conexao, $soma);
+                  $gastos = mysqli_fetch_assoc($resultado);
+
+                  $soma = "SELECT SUM(valor) AS VALOR FROM entrada";
+                  $resultado = mysqli_query($conexao, $soma);
+                  $entrada = mysqli_fetch_assoc($resultado);
+
+                  $resultado = $entrada['VALOR'] - $gastos['VALORSAIDA'];
+                  ?>
+
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold"><a href="gastos.php">Saldo Dispinível</a></p>
+                    <h5 class=" text-primary font-weight-bolder mb-0">R$<?php echo number_format((float)$resultado, 2, ',', ''); ?></h5>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                    <i class="bi bi-graph-down-arrow"></i>
                   </div>
                 </div>
               </div>
@@ -143,20 +176,20 @@ if (isset($_SESSION["usuario"]) && is_array($_SESSION["usuario"])) {
 
       </div>
       <footer class="footer pt-3  ">
-          <div class="container-fluid">
-            <div class="row align-items-center justify-content-lg-between">
-              <div class="col-lg-6 mb-lg-0 mb-4">
-                <div class="copyright text-center text-sm text-muted text-lg-start">
+        <div class="container-fluid">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6 mb-lg-0 mb-4">
+              <div class="copyright text-center text-sm text-muted text-lg-start">
                 Copyright © <script>
-                    document.write(new Date().getFullYear())
-                  </script>,
-                  FiqueNoAzul Designed And Developed <i class="fa fa-heart"></i> by
-                  <a href="" class="font-weight-bold" target="_blank">Unastech</a>
-                </div>
+                  document.write(new Date().getFullYear())
+                </script>,
+                FiqueNoAzul Designed And Developed <i class="fa fa-heart"></i> by
+                <a href="" class="font-weight-bold" target="_blank">Unastech</a>
               </div>
             </div>
           </div>
-        </footer>
+        </div>
+      </footer>
     </div>
   </main>
   <div class="fixed-plugin">
@@ -246,33 +279,45 @@ if (isset($_SESSION["usuario"]) && is_array($_SESSION["usuario"])) {
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
           ['Conta (Água, luz e Internet).', <?php
-                        require('conexao.php');
-                        $soma = "SELECT SUM(valor) AS VALOR FROM gastos WHERE tipo=1";
-                        $resultado = mysqli_query($conexao, $soma);
-                        $gastos = mysqli_fetch_assoc($resultado);
-                        echo number_format((float)$gastos['VALOR'], 2, '.', ''); ?>],
+                                            require('conexao.php');
+                                            $soma = "SELECT SUM(valor) AS VALOR FROM gastos WHERE tipo=1";
+                                            $resultado = mysqli_query($conexao, $soma);
+                                            $gastos = mysqli_fetch_assoc($resultado);
+                                            echo number_format((float)$gastos['VALOR'], 2, '.', ''); ?>],
           ['Alimenticio.', <?php
-                        require('conexao.php');
-                        $soma = "SELECT SUM(valor) AS VALOR FROM gastos WHERE tipo=2";
-                        $resultado = mysqli_query($conexao, $soma);
-                        $gastos = mysqli_fetch_assoc($resultado);
-                        echo number_format((float)$gastos['VALOR'], 2, '.', '');?>],
-          ['Compra na Internet.',<?php
-                        require('conexao.php');
-                        $soma = "SELECT SUM(valor) AS VALOR FROM gastos WHERE tipo=3";
-                        $resultado = mysqli_query($conexao, $soma);
-                        $gastos = mysqli_fetch_assoc($resultado);
-                        echo number_format((float)$gastos['VALOR'], 2, '.', '');?>],
+                            require('conexao.php');
+                            $soma = "SELECT SUM(valor) AS VALOR FROM gastos WHERE tipo=2";
+                            $resultado = mysqli_query($conexao, $soma);
+                            $gastos = mysqli_fetch_assoc($resultado);
+                            echo number_format((float)$gastos['VALOR'], 2, '.', ''); ?>],
+          ['Compra na Internet.', <?php
+                                  require('conexao.php');
+                                  $soma = "SELECT SUM(valor) AS VALOR FROM gastos WHERE tipo=3";
+                                  $resultado = mysqli_query($conexao, $soma);
+                                  $gastos = mysqli_fetch_assoc($resultado);
+                                  echo number_format((float)$gastos['VALOR'], 2, '.', ''); ?>],
           ['Farmácia.', <?php
                         require('conexao.php');
                         $soma = "SELECT SUM(valor) AS VALOR FROM gastos WHERE tipo=4";
                         $resultado = mysqli_query($conexao, $soma);
                         $gastos = mysqli_fetch_assoc($resultado);
-                        echo number_format((float)$gastos['VALOR'], 2, '.', '');?>],
+                        echo number_format((float)$gastos['VALOR'], 2, '.', ''); ?>],
+          ['Eletrônico.', <?php
+                        require('conexao.php');
+                        $soma = "SELECT SUM(valor) AS VALOR FROM gastos WHERE tipo=5";
+                        $resultado = mysqli_query($conexao, $soma);
+                        $gastos = mysqli_fetch_assoc($resultado);
+                        echo number_format((float)$gastos['VALOR'], 2, '.', ''); ?>],
+          ['Outros.', <?php
+                        require('conexao.php');
+                        $soma = "SELECT SUM(valor) AS VALOR FROM gastos WHERE tipo=6";
+                        $resultado = mysqli_query($conexao, $soma);
+                        $gastos = mysqli_fetch_assoc($resultado);
+                        echo number_format((float)$gastos['VALOR'], 2, '.', ''); ?>],
         ]);
 
         var options = {
-          title: 'Controle de Gatos',
+          title: 'Controle de Gastos',
           pieHole: 0.4,
         };
 

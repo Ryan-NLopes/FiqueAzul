@@ -65,6 +65,8 @@
                     <option value=2>Alimenticio.</option>
                     <option value=3>Compra na Internet.</option>
                     <option value=4>Farmácia.</option>
+                    <option value=5>Eletrônicos.</option>
+                    <option value=6>Outros.</option>
                   </select>
                 </div>
                 <div class="mb-3">
