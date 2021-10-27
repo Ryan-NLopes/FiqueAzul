@@ -99,10 +99,11 @@
                     <div class="card-body pt-0 p-3 text-center">
                       <h6 class="text-center mb-0">Total Entrada</h6>
                       <hr class="horizontal dark my-3">
-                      <h5 class="mb-0">R$<?php echo number_format((float)$entrada['VALOR'], 2, ',', ''); ?></h5>
+                      <h5 class="mb-0">R$<?php echo number_format((float)$entrada['VALOR'], 2, ',', '.'); ?></h5>
                     </div>
                   </div>
                 </div>
+                
                 <div class="col-md-6 mt-md-0 mt-4">
                   <div class="card">
                     <div class="card-header mx-4 p-3 text-center">
@@ -119,10 +120,37 @@
                     <div class="card-body pt-0 p-3 text-center">
                       <h6 class="text-center mb-0">Total Despesas</h6>
                       <hr class="horizontal dark my-3">
-                      <h5 class="mb-0">R$<?php echo number_format((float)$gastos['VALOR'], 2, ',', ''); ?></h5>
+                      <h5 class="mb-0">R$<?php echo number_format((float)$gastos['VALOR'], 2, ',', '.'); ?></h5>
                     </div>
                   </div>
                 </div>
+                <div class="col-md-6 mt-md-0 mt-4">
+                  <div class="card">
+                    <div class="card-header mx-4 p-3 text-center">
+                      <div class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg">
+                      <i class="bi bi-graph-down-arrow"></i>
+                      </div>
+                    </div>
+                    <?php
+                        require('conexao.php');
+                        $soma = "SELECT SUM(valor) AS VALORSAIDA FROM gastos";
+                        $resultado = mysqli_query($conexao, $soma);
+                        $gastos = mysqli_fetch_assoc($resultado);
+
+                        $soma = "SELECT SUM(valor) AS VALOR FROM entrada";
+                        $resultado = mysqli_query($conexao, $soma);
+                        $entrada = mysqli_fetch_assoc($resultado);
+
+                        $resultado = $entrada['VALOR'] - $gastos['VALORSAIDA'];
+                        ?>
+                    <div class="card-body pt-0 p-3 text-center">
+                      <h6 class="text-center mb-0">Saldo Disponivel</h6>
+                      <hr class="horizontal dark my-3">
+                      <h5 class="mb-0">R$<?php echo number_format((float)$resultado, 2, ',', '.'); ?></h5>
+                    </div>
+                  </div>
+                </div>
+                
               </div>
             </div>
           </div>
@@ -160,7 +188,7 @@
                       </div>
                     </div>
                     <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
-                    +R$<?php echo number_format((float)$dados['valor'], 2, ',', ''); ?>
+                    +R$<?php echo number_format((float)$dados['valor'], 2, ',', '.'); ?>
                     </div>
                   </li>
                 </ul>
@@ -202,7 +230,7 @@
                       </div>
                     </div>
                     <div class="d-flex align-items-center text-danger text-gradient text-sm font-weight-bold">
-                    -R$<?php echo number_format((float)$dados['valor'], 2, ',', ''); ?>
+                    -R$<?php echo number_format((float)$dados['valor'], 2, ',', '.'); ?>
                     </div>
                   </li>
                 </ul>
